@@ -891,9 +891,13 @@ def do_ip(inpu, local_ip):  # check if the inputted ips are up so we dont scan t
     except:
         pass
 
+    uphosts_fqdn = []
+    for host in uphosts:
+        uphosts_fqdn.append(scanner[host].hostname())
+
     printnlog('[scan complete]')
 
-    return uphosts
+    return uphosts_fqdn
 
 def gen_payload_exe_mdwd(share_name, payload_name, addresses_array, drive_letter):
     MiniDumpWithDataSegs = ''.join(random.choices(string.ascii_lowercase, k=random.randrange(8, 25)))
